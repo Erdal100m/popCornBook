@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книжный магазин - Новинки</title>
+    
+    <!-- Подключаем стили для слайдера Slick -->
+    <link rel="stylesheet" type="text/css" href="https://cloudflare.com"/>
+    <link rel="stylesheet" type="text/css" href="https://cloudflare.com"/>
+
+    <style>
+        /* Сброс и базовые стили */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Градиентный фон от белого к оранжевому */
+            background: linear-gradient(to bottom, #ffffff, #ffe0b2, #f57c00);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Баннер наверху */
+        .top-banner {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f57c00;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f57c00;
+        }
+
+        /* Плавающее гамбургер-меню (скрыто на десктопе, видно на мобильных) */
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            transition: 0.3s;
+        }
+
+        /* Адаптивность хедера */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger-menu { display: flex; }
+        }
+
+        /* Центральная часть с новинками */
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 36px;
+        }
+
+        /* Слайдер и слайды */
+        .slider {
+            padding: 0 40px; /* Отступы для стрелок */
+        }
+
+        .slide-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 0 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            /* Фон слайда (попкорн + заливка) */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+                url('https://unsplash.com');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 30px 20px;
+            height: 400px; /* Фиксированная высота карточки */
+            display: flex !important;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .slide-card h3 {
+            font-size: 22px;
+            color: #f57c00;
+        }
+
+        .slide-card p {
+            font-size: 15px;
+            color: #555;
+            flex-grow: 1;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .buy-btn {
+            background-color: #f57c00;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .buy-btn:hover {
+            background-color: #e65100;
+        }
+
+        /* Кастомизация стрелок слайдера */
+        .slick-prev:before, .slick-next:before {
+            color: #f57c00;
+            font-size: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .slider { padding: 0 10px; }
+            .slide-card { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигационный баннер -->
+    <header class="top-banner">
+        <div class="logo">BookStore</div>
+        <nav class="nav-links">
+            <a href="#books">Книги</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Главная секция -->
+    <main class="main-content">
+        <h2 class="section-title">Горячие Новинки</h2>
+        
+        <!-- Контейнер для 6 слайдов -->
+        <div class="slider">
+            <!-- Слайд 1 -->
+            <div class="slide-card">
+                <h3>Гарри Поттер</h3>
+                <p>Увлекательная история о магии и волшебстве, которая затянет вас с первой страницы.</p>
+                <button class="buy-btn">Читать</button>
+            </div>
+            <!-- Слайд 2 -->
+            <div class="slide-card">
+                <h3>Дюна</h3>
+                <p>Легендарный научно-фантастический роман о пустынной планете Арракис и борьбе за власть.</p>
+                <button class="buy-btn">Читать</button>
+            </div>
+            <!-- Слайд 3 -->
+            <div class="slide-card">
+                <h3>1984</h3>
+                <p>Культовая антиутопия Джорджа Оруэлла, ставшая классикой мировой литературы.</p>
+                <button class="buy-btn">Читать</button>
+            </div>
+            <!-- Слайд 4 -->
+            <div class="slide-card">
+                <h3>Мастер и Маргарита</h3>
+                <p>Мистический роман Михаила Булгакова о вечной борьбе добра и зла.</p>
+                <button class="buy-btn">Читать</button>
+            </div>
+            <!-- Слайд 5 -->
+            <div class="slide-card">
+                <h3>Шантарам</h3>
+                <p>Захватывающий приключенческий роман, основанный на реальных событиях в Индии.</p>
+                <button class="buy-btn">Читать</button>
+            </div>
+            <!-- Слайд 6 -->
+            <div class="slide-card">
+                <h3>Атлант расправил плечи</h3>
+                <p>Глубокий философский роман-антиутопия о загадочном Джоне Голте.</p>
+                <button class="buy-btn">Читать</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подключаем jQuery и Slick Slider JS -->
+    <script src="https://jquery.com"></script>
+    <script src="https://cloudflare.com"></script>
+
+    <!-- Скрипты -->
+    <script>
+        // Инициализация карусели
+        $(document).ready(function(){
+            $('.slider').slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: true,
+                dots: true,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        });
+
+        // Функция для плавающего гамбургер меню
+        function toggleMenu() {
+            alert("Здесь будет логика открытия выпадающего меню или панели");
+        }
+    </script>
+</body>
+</html>
